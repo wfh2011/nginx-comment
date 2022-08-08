@@ -19,6 +19,10 @@ static ngx_int_t ngx_decode_base64_internal(ngx_str_t *dst, ngx_str_t *src,
     const u_char *basis);
 
 
+/*
+ * 字符串转换成小写
+ * 可以取前面一定长度的字母
+ * */
 void
 ngx_strlow(u_char *dst, u_char *src, size_t n)
 {

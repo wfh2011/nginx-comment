@@ -4,6 +4,22 @@
  * Copyright (C) Nginx, Inc.
  */
 
+/* 内存相关函数封装:
+ * malloc
+ * free
+ * memalign
+ * posix_memalign
+ * alloc: malloc + memzero
+ *
+ * 全局变量:
+ * extern ngx_uint_t  ngx_pagesize;
+ * extern ngx_uint_t  ngx_pagesize_shift;
+ * extern ngx_uint_t  ngx_cacheline_size;
+ *
+ * 注意：
+ * win32平台无内存对齐，需要调用ngx_memalign的函数，均用malloc代替
+ * win32平台的代码不增加注释，因为nginx应用场景主要是Linux/Unix
+ * */
 
 #ifndef _NGX_ALLOC_H_INCLUDED_
 #define _NGX_ALLOC_H_INCLUDED_

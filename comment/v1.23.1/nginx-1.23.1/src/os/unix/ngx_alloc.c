@@ -14,6 +14,8 @@ ngx_uint_t  ngx_pagesize_shift;
 ngx_uint_t  ngx_cacheline_size;
 
 
+/* malloc封装
+ * */
 void *
 ngx_alloc(size_t size, ngx_log_t *log)
 {
@@ -31,6 +33,8 @@ ngx_alloc(size_t size, ngx_log_t *log)
 }
 
 
+/* malloc + memzero
+ * */
 void *
 ngx_calloc(size_t size, ngx_log_t *log)
 {
@@ -46,6 +50,9 @@ ngx_calloc(size_t size, ngx_log_t *log)
 }
 
 
+/* 对齐的内存分配
+ * posix_memalign和memalign的套壳
+ * */
 #if (NGX_HAVE_POSIX_MEMALIGN)
 
 void *

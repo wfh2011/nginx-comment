@@ -43,7 +43,12 @@ typedef struct {
     (str)->len = sizeof(text) - 1; (str)->data = (u_char *) text
 #define ngx_str_null(str)   (str)->len = 0; (str)->data = NULL
 
-
+/* 大小写转换
+ * 原理很简单，小写字母和大写字母相差32
+ * 为了提升性能：
+ * 虽然标准库有tolower/toupper函数，但是会有函数调用，宏定义更快
+ * 由于小写字母和大写字母相差32，可以利用位操作，比直接与32做加减更快
+ * */
 #define ngx_tolower(c)      (u_char) ((c >= 'A' && c <= 'Z') ? (c | 0x20) : c)
 #define ngx_toupper(c)      (u_char) ((c >= 'a' && c <= 'z') ? (c & ~0x20) : c)
 
